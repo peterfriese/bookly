@@ -2,8 +2,7 @@
 #import "@preview/showybox:2.0.4": *
 #import "@preview/swank-tex:0.1.0": LaTeX
 #import "@preview/cheq:0.2.2": *
-#import "../src/bookly.typ": *
-// #import "@preview/bookly:1.1.0": *
+#import "@preview/bookly:1.1.1": *
 
 #show: checklist.with(fill: eastern.lighten(95%), stroke: eastern, radius: .2em)
 

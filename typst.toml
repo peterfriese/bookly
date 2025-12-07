@@ -7,6 +7,7 @@ description = "Book template for Typst"
 entrypoint = "src/bookly.typ"
 categories = ["book", "model"]
 repository = "https://github.com/maucejo/book_template"
+exclude = ["docs/manual.pdf"]
 
 [template]
 path = "template"
