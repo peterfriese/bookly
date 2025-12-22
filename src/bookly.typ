@@ -60,10 +60,6 @@
 
 
   // References
-<<<<<<< HEAD
-=======
-  // set ref(supplement: it => none)
->>>>>>> def53fe (update bookly)
   set ref(supplement: none)
 
   // Citations
