@@ -14,6 +14,7 @@
   author: "Author Name",
   theme: fancy,
   tufte: false,
+  two-sided: false,
   logo: none,
   lang: "en",
   fonts: default-fonts,
@@ -27,6 +28,7 @@
   states.author.update(author)
   states.title.update(title)
   states.tufte.update(tufte)
+  states.two-sided.update(two-sided)
 
   // Book colors
   let book-colors = default-colors + colors
@@ -125,21 +127,31 @@
   // Page properties for tufte layout
   set-page-properties()
   if tufte {
-    set-margin-note-defaults(
-      stroke: none,
-      side: right,
-      margin-right: 5.5cm,
-      margin-left: -1.5cm,
-    )
+    if two-sided {
+      set-margin-note-defaults(
+        stroke: none,
+        side: outside,
+        margin-inside: -1.5cm,
+        margin-outside: 5.5cm,
+      )
+    } else {
+      set-margin-note-defaults(
+        stroke: none,
+        side: right,
+        margin-right: 5.5cm,
+        margin-left: -1.5cm,
+      )
+    }
   } else {
     set-margin-note-defaults(stroke: none)
   }
 
   set page(
-    margin: (
-      left: 1.47cm,
-      right: 6.93cm
-    )
+    margin: if two-sided {
+      (inside: 1.47cm, outside: 6.93cm)
+    } else {
+      (left: 1.47cm, right: 6.93cm)
+    }
   ) if tufte
 
   // Headings

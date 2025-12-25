@@ -12,6 +12,7 @@
   isappendix: state("isappendix", false),
   isfrontmatter: state("isfrontmatter", false),
   tufte: state("tufte", false),
+  two-sided: state("two-sided", false),
   localization: state("localization"),
   num-heading: state("num-heading", "1"),
   num-pattern: state("num-pattern", "1.1."),
