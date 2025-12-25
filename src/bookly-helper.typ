@@ -18,7 +18,13 @@
 
 // Fullwidth block
 #let fullwidth(dx: 0%, body) = context if states.tufte.get() {
-  block(width: 144% + dx, body)
+  if states.two-sided.get() and calc.even(here().page()) {
+    // On even pages in two-sided mode, shift to left margin
+    move(dx: -44% - dx, block(width: 144% + dx, body))
+  } else {
+    // On odd pages or in single-sided mode, normal right margin behavior
+    block(width: 144% + dx, body)
+  }
 } else {
   block(width: 100% + dx, body)
 }

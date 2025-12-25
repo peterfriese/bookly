@@ -33,19 +33,28 @@
 #let fullfigure(content, caption: none, label: none) = context if states.tufte.get() {
   fullwidth({
     set figure.caption(position: bottom)
-    show figure.caption: it => context move(dx: 37.6%, dy: -0.75em)[
-      #set text(0.85em)
-      #set align(left)
-      #let kind = none
-      #if it.supplement.text.contains("Fig") {
-        kind = image
-      } else if it.supplement.text.contains("Tab") {
-        kind = table
+    show figure.caption: it => context {
+      let shift-amount = if states.two-sided.get() and calc.even(here().page()) {
+        // On even pages in two-sided mode, caption stays in outside (left) margin
+        0%
+      } else {
+        // On odd pages or single-sided mode, caption in right margin
+        37.6%
       }
-      #block(width: 4.5cm)[
-        #it.supplement #counter(figure.where(kind: kind)).display() #it.separator #it.body
+      move(dx: shift-amount, dy: -0.75em)[
+        #set text(0.85em)
+        #set align(left)
+        #let kind = none
+        #if it.supplement.text.contains("Fig") {
+          kind = image
+        } else if it.supplement.text.contains("Tab") {
+          kind = table
+        }
+        #block(width: 4.5cm)[
+          #it.supplement #counter(figure.where(kind: kind)).display() #it.separator #it.body
+        ]
       ]
-    ]
+    }
     set figure.caption(position: bottom)
     [#figure(
       content,
